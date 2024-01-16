@@ -8,18 +8,15 @@
       <h1 class="text-5xl md:text-[80px] font-bold mb-6 font-sans leading-3 shadow-primary drop-shadow-lg">{{ firstTitle }}</h1>
       <h1 class="text-6xl md:text-[120px] font-bold mb-6 font-sans leading-tight shadow-primary drop-shadow-lg uppercase">{{ secondTitle }}</h1>
       <p class="text-3xl md:text-3xl text-shadow-outline font-open">{{ subtitle }}</p>
-      <q-btn class="text-lg px-5 py-2 rounded bg-white text-primary my-5 mt-auto shadow-2xl" @click="scrollToFeatures">
-        <q-avatar size="42px" class="mr-5">
-          <q-img src="zap-icon.png" alt="Ícone Whatsapp" />
-        </q-avatar>
-        Converse Conosco
-      </q-btn>
 
+      <WhatsAppBtn :text="text" />
     </div>
   </section>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import WhatsAppBtn from './WhatsAppBtn.vue'
 
 const props = defineProps({
   image: String,
@@ -27,5 +24,7 @@ const props = defineProps({
   secondTitle: String,
   subtitle: String
 })
+
+const text = ref('Converse Conosco')
 
 </script>
