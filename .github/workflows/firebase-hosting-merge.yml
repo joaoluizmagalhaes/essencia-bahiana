@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Especifique a versão do Node.js que você está usando
+          node-version: '18'
 
       # Instalar dependências
       - name: Install Dependencies
@@ -26,7 +26,16 @@ jobs:
 
       # Fazer build do projeto Quasar
       - name: Build Quasar Project
-        run: npx quasar build
+        run: |
+          echo "VITE_APIKEY=${{ secrets.VITE_APIKEY }}" >> .env
+          echo "VITE_APPID=${{ secrets.VITE_APPID }}" >> .env
+          echo "VITE_AUTHDOMAIN=${{ secrets.VITE_AUTHDOMAIN }}" >> .env
+          echo "VITE_DATABASEURL=${{ secrets.VITE_DATABASEURL }}" >> .env
+          echo "VITE_MEASUREMENTID=${{ secrets.VITE_MEASUREMENTID }}" >> .env
+          echo "VITE_MESSAGINGSENDERID=${{ secrets.VITE_MESSAGINGSENDERID }}" >> .env
+          echo "VITE_PROJECTID=${{ secrets.VITE_PROJECTID }}" >> .env
+          echo "VITE_STORAGEBUCKET=${{ secrets.VITE_STORAGEBUCKET }}" >> .env
+          npx quasar build
 
       # Deploy no Firebase Hosting
       - name: Deploy to Firebase Hosting
@@ -36,4 +45,5 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ESSENCIA_BAHIANA }}
           channelId: live
           projectId: essencia-bahiana
+
 
