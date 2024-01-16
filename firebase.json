@@ -2,11 +2,7 @@
   "functions": [
     {
       "source": "functions",
-      "codebase": "default"
-    },
-    {
-      "source": "essencia-bahiana",
-      "codebase": "essencia-bahiana",
+      "codebase": "default",
       "ignore": [
         "node_modules",
         ".git",
