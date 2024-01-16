@@ -5,9 +5,7 @@
 <script setup>
 import { onMounted } from 'vue';
 import { functions, httpsCallable } from '../firebase.js'
-import { connectFunctionsEmulator } from 'firebase/functions'
-
-connectFunctionsEmulator(functions, "127.0.0.1", 5001)
+// import { connectFunctionsEmulator } from 'firebase/functions'
 
 const callFetchPlaces = httpsCallable(functions, 'fetchPlaces')
 
