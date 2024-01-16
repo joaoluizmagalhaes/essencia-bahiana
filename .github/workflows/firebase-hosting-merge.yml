@@ -2,19 +2,38 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
+
 'on':
   push:
     branches:
       - main
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: quasar build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      # Configurar o ambiente Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ESSENCIA_BAHIANA }}'
+          node-version: '18' # Especifique a versão do Node.js que você está usando
+
+      # Instalar dependências
+      - name: Install Dependencies
+        run: npm install
+
+      # Fazer build do projeto Quasar
+      - name: Build Quasar Project
+        run: npx quasar build
+
+      # Deploy no Firebase Hosting
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ESSENCIA_BAHIANA }}
           channelId: live
           projectId: essencia-bahiana
+
