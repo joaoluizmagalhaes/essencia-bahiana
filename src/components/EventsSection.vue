@@ -5,11 +5,14 @@
 <script setup>
 import { onMounted } from 'vue';
 import { functions, httpsCallable } from '../firebase.js'
+import { connectFunctionsEmulator } from 'firebase/functions'
 
-const fetchPlaces = httpsCallable(functions, 'fetchPlaces')
+connectFunctionsEmulator(functions, "127.0.0.1", 5001)
+
+const callFetchPlaces = httpsCallable(functions, 'fetchPlaces')
 
 onMounted( () =>{
-  fetchPlaces({ location: 'latitude,longitude', radius: '5000', type: 'restaurant' })
+  callFetchPlaces({ location: '-16.4286638 -39.103784', radius: '15000', type: 'restaurants' })
   .then(result => {
     console.log(result.data); // Os lugares retornados pela API do Google Places
   })
