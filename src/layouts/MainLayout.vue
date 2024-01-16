@@ -8,8 +8,9 @@
         class="w-16 h-16 md:w-32 md:h-32  ease-in-out duration-500"
         :class="{'md:!w-20 md:!h-20': hasScrolled}"
       >
-        <img src="logo.svg">
+        <q-img src="logo.svg" alt="Logo - Essência Bahiana" />
       </q-avatar>
+      <h3 class="ml-4 md:ml-6 font-sans font-bold text-lg md:text-2xl text-primary">Essência <span class="uppercase text-2xl md:text-3xl">Bahiana</span></h3>
       <q-space />
       <q-tabs v-model="tab" shrink class="text-primary hidden md:!block">
         <q-btn-dropdown auto-close stretch flat label="O que fazer em">
@@ -34,14 +35,14 @@
         <q-tab name="tab6" label="Passeios" />
         <q-tab name="tab7" label="Contato" />
       </q-tabs>
-      <q-btn flat @click="toggleRightDrawer" round dense icon="menu" class=" md:hidden" />
+      <q-btn flat @click="toggleRightDrawer" round dense icon="menu" color="primary" class=" md:hidden" />
     </q-toolbar>
     <q-drawer v-model="rightDrawerOpen" overlay side="right" bordered class="q-py-lg flex flex-col">
       <div class="mx-auto mb-5 w-full flex justify-evenly items-center ">
         <q-avatar class="w-16 h-16 md:w-32 md:h-32">
-          <img src="logo.svg">
+          <q-img src="logo.svg" alt="Logo - Essência Bahiana" />
         </q-avatar>
-        <div class="text-lg text-primary font-sans">Essência <span class="uppercase">Bahiana</span></div>
+        <div class="text-lg text-primary font-bold font-sans">Essência <span class="uppercase text-xl">Bahiana</span></div>
       </div>
       <div>
       <!-- Conteúdo do Drawer -->
