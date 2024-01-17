@@ -35,9 +35,9 @@ jobs:
           echo "VITE_MESSAGINGSENDERID=${{ secrets.VITE_MESSAGINGSENDERID }}" >> .env
           echo "VITE_PROJECTID=${{ secrets.VITE_PROJECTID }}" >> .env
           echo "VITE_STORAGEBUCKET=${{ secrets.VITE_STORAGEBUCKET }}" >> .env
-          echo "VITE_EMAILJS_SERVICE_ID=${{ secrets.VITE_EMAILJS_SERVICE_ID }}" >> .env"
-          echo "VITE_EMAILJS_TEMPLATE_ID=${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}" >> .env"
-          echo "VITE_EMAILJS_PUBLIC_KEY=${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}" >> .env"
+          echo "VITE_EMAILJS_SERVICE_ID=${{ secrets.VITE_EMAILJS_SERVICE_ID }}" >> .env
+          echo "VITE_EMAILJS_TEMPLATE_ID=${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}" >> .env
+          echo "VITE_EMAILJS_PUBLIC_KEY=${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}" >> .env
           npx quasar build
 
       # Deploy no Firebase Hosting
