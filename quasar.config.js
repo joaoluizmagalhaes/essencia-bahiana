@@ -31,7 +31,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
       'i18n',
-      'axios',
+      'axios'
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -43,7 +43,7 @@ module.exports = configure(function (/* ctx */) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
-      // 'fontawesome-v6',
+      'fontawesome-v6',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
@@ -76,7 +76,14 @@ module.exports = configure(function (/* ctx */) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
+      extendViteConf(viteConf) {
+        // Ensure the 'define' property exists
+        viteConf.define = viteConf.define || {};
+
+        // Set the __VUE_PROD_HYDRATION_MISMATCH_DETAILS__ flag
+        viteConf.define.__VUE_PROD_HYDRATION_MISMATCH_DETAILS__ = false;
+      },
+
       // viteVuePluginOptions: {},
 
       vitePlugins: [

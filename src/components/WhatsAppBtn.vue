@@ -1,11 +1,11 @@
 <template>
   <q-btn
     align="left"
-    size="lg"
-    class="text-lg py-2 rounded bg-white text-primary my-5 mt-auto shadow-2xl flex justify-start mx-auto"
+    size="md"
+    class="py-2 rounded bg-white text-primary my-5 mt-auto shadow-2xl flex justify-start mx-auto"
     @click="openWhatsApp"
     >
-    <q-avatar size="42px" class="mr-5">
+    <q-avatar size="40px" class="mr-5">
       <q-img src="zap-icon.png" alt="Ícone Whatsapp" />
     </q-avatar>
     {{ text }}

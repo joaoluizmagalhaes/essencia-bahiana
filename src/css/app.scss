@@ -10,3 +10,12 @@
 body {
   font-family: 'Open Sans', 'sans-serif';
 }
+
+@layer base {
+  .whatsapp-button {
+    @apply transition-colors duration-200;
+  }
+  .whatsapp-button:hover {
+    background-color: var(--q-color-accent-light); /* Ajuste para uma cor de hover se necessário */
+  }
+}

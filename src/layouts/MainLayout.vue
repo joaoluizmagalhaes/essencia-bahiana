@@ -81,6 +81,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const rightDrawerOpen = ref(false)
 const hasScrolled = ref(false)
+const tab = ref(null)
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
