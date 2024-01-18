@@ -27,7 +27,7 @@
             <q-input
               filled
               v-model="email"
-              label="email"
+              label="E-mail"
               class="mb-6"
               color="primary" />
             <q-input
@@ -88,7 +88,7 @@ const submitForm = () => {
   subjectRef.value.validate()
   messageRef.value.validate()
 
-  if(nameRef.value.hasError || emailRef.value.hasError || messageRef.value.hasError) {
+  if(nameRef.value.hasError || subjectRef.value.hasError || messageRef.value.hasError) {
     $q.notify({
       position: 'center',
       color: 'negative',
@@ -97,14 +97,14 @@ const submitForm = () => {
   } else {
 
     // Configuração do serviço de email
-    const serviceID = import.meta.env.VITE_emailjs_service_id // Substitua pelo seu Service ID
-    const templateID = import.meta.env.VITE_emailjs_template_id // Substitua pelo seu Template ID
-    const publicKey = import.meta.env.VITE_emailjs_public_key
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID // Substitua pelo seu Service ID
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID // Substitua pelo seu Template ID
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
     // Parâmetros do email
     const params = {
       name: name.value,
-      phone:  name.value,
+      phone:  phone.value,
       email: email.value,
       subject: subject.value,
       message: message.value

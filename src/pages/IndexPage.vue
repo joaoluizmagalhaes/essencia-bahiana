@@ -13,7 +13,7 @@ import { ref } from 'vue'
 import Hero from '../components/HeroComponent.vue'
 import SelectionBar from 'src/components/SelectionBar.vue'
 import TransferSection from 'src/components/TransferSection.vue'
-import EventsSection from 'src/components/EventsSection.vue'
+// import EventsSection from 'src/components/EventsSection.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import ContactSection from 'src/components/ContactSection.vue'
 

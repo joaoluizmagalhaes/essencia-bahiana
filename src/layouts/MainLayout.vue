@@ -7,10 +7,11 @@
       <q-avatar
         class="w-16 h-16 md:w-32 md:h-32  ease-in-out duration-500"
         :class="{'md:!w-20 md:!h-20': hasScrolled}"
+        @click="goToHome"
       >
         <q-img src="logo.svg" alt="Logo - Essência Bahiana" />
       </q-avatar>
-      <h3 class="ml-4 md:ml-6 font-sans font-bold text-lg md:text-2xl text-primary">Essência <span class="uppercase text-2xl md:text-3xl">Bahiana</span></h3>
+      <h3 class="ml-4 md:ml-6 font-sans font-bold text-lg md:text-2xl text-primary">Essência <span class="uppercase text-2xl md:text-3xl" @click="goToHome">Bahiana</span></h3>
       <q-space />
       <q-tabs v-model="tab" shrink class="text-primary hidden md:!block">
         <q-btn-dropdown auto-close stretch flat label="O que fazer em">
@@ -78,10 +79,14 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+
 
 const rightDrawerOpen = ref(false)
 const hasScrolled = ref(false)
 const tab = ref(null)
+const router = useRouter()
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
@@ -93,6 +98,10 @@ onUnmounted(() => {
 
 function toggleRightDrawer () {
   rightDrawerOpen.value = !rightDrawerOpen.value
+}
+
+function goToHome() {
+  router.push('/')
 }
 
 const handleScroll = () => {
