@@ -10,11 +10,11 @@ const routes = [
       },
       {
         path: '/blog',
-        component: () => import('pages/blogHome.vue'),
+        component: () => import('pages/BlogHome.vue'),
         children: [
           {
             path: '/blog/:categor/:id',
-            component: () => import('pages/blogPage.vue')
+            component: () => import('pages/BlogPage.vue')
           }
         ]
       },
