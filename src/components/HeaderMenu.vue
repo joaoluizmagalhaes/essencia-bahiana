@@ -1,5 +1,5 @@
 <template>
-  <q-tabs v-model="tab" :vertical="!isMdOrAbove" class="text-primary">
+  <q-tabs v-model="tab" :vertical="isMdOrAbove ? false : true" class="text-primary">
     <q-btn-dropdown auto-close stretch flat label="O que fazer em" class="w-full text-center">
       <q-list separator class="text-primary md:bg-transparent bg-white ">
         <q-item clickable @click="tab = 'portoSeguro'" class="bg-transparent">
@@ -25,8 +25,11 @@
 </template>
 <script setup>
 import { useQuasar } from 'quasar'
+import { onMounted } from 'vue';
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+
+
 
 const isMdOrAbove = computed(() => $q.screen.gt.md)
 const $q = useQuasar()
@@ -35,5 +38,9 @@ const router = useRouter()
 function goTo(route) {
   router.push('/'+route)
 }
+
+onMounted(() => {
+  console.log(isMdOrAbove.value)
+})
 
 </script>

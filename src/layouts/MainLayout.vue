@@ -11,7 +11,7 @@
       >
         <q-img src="logo.svg" alt="Logo - Essência Bahiana" />
       </q-avatar>
-      <h3 class="ml-4 md:ml-6 font-sans font-bold text-lg md:text-2xl text-primary">Essência <span class="uppercase text-2xl md:text-3xl" @click="goToHome">Bahiana</span></h3>
+      <h3 @click="goToHome" class="ml-4 md:ml-6 font-sans font-bold text-lg md:text-2xl text-primary">Essência <span class="uppercase text-2xl md:text-3xl" @click="goToHome">Bahiana</span></h3>
       <q-space />
       <HeaderMenu class="hidden md:!flex"/>
       <q-btn flat @click="toggleRightDrawer" round dense icon="menu" color="primary" class=" md:hidden" />
