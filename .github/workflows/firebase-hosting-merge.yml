@@ -38,6 +38,9 @@ jobs:
           echo "VITE_EMAILJS_SERVICE_ID=${{ secrets.VITE_EMAILJS_SERVICE_ID }}" >> .env
           echo "VITE_EMAILJS_TEMPLATE_ID=${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}" >> .env
           echo "VITE_EMAILJS_PUBLIC_KEY=${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}" >> .env
+          echo "VITE_GOOGLE_AD_CLIENT=${{ secrets.VITE_GOOGLE_AD_CLIENT }}" >> .env
+          echo "VITE_GOOGLE_AD_SLOT_SQUARE=${{ secrets.VITE_GOOGLE_AD_SLOT_SQUARE }}" >> .env
+          echo "VITE_GOOGLE_AD_SLOT_BANNER=${{ secrets.VITE_GOOGLE_AD_SLOT_BANNER }}" >> .env
           npx quasar build
 
       # Deploy no Firebase Hosting

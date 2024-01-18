@@ -1,9 +1,9 @@
 <template>
-  <div class="mx-auto container flex">
-    <div class="w-7/12 box-border flex h-[500px]">
+  <div class="mx-auto container flex flex-col md:flex-row md:h-[500px]">
+    <div class="w-full md:w-7/12 px-6 md:px-0 box-border flex md:h-[500px]">
       <ArticleHero :article="dataHero[0]" />
     </div>
-    <div class="w-5/12 box-border flex flex-col h-[500px]">
+    <div class="w-full md:w-5/12 px-6 md:px-0 mb-10 md:mb-0 box-border md:justify-between flex flex-col  md:h-[unset]">
       <ArticleHero :article="dataHero[1]" />
       <ArticleHero :article="dataHero[2]" />
     </div>
@@ -16,16 +16,13 @@ import ArticleHero from './ArticleHero.vue'
 
 const props = defineProps({
   dataHero: {
-    type: Array,
-    default: () => ([]), // Define um valor padrão como um array vazio
-    validator: (value) => {
-      // Valida se cada item do array é um objeto com as propriedades 'title', 'imgURL', e 'excerpt'
-      return value.every(item =>
-        item.hasOwnProperty('title') && typeof item.title === 'string' &&
-        item.hasOwnProperty('imgURL') && typeof item.imgURL === 'string' &&
-        item.hasOwnProperty('excerpt') && typeof item.excerpt === 'string'
-      );
-    }
+    title: String,
+    imageURL: String,
+    excerpt: String,
+    containerStyle: String,
+    imageStyle: String,
+    titleStyle: String,
+    excerptStyle: String
   }
 });
 

@@ -5,9 +5,9 @@
     </div>
     <div class="absolute top-0 left-0 w-full h-full bg-black opacity-15"></div>
     <div class="absolute top-0 max-w-2xl w-full h-full flex p-5 flex-col py-[200px] justify-center md:justify-start items-center text-center text-white z-10">
-      <h1 class="text-5xl md:text-[80px] font-bold mb-6 font-sans leading-3 shadow-primary drop-shadow-lg">{{ firstTitle }}</h1>
-      <h1 class="text-6xl md:text-[120px] font-bold mb-6 font-sans leading-tight shadow-primary drop-shadow-lg uppercase">{{ secondTitle }}</h1>
-      <p class="text-3xl md:text-3xl text-shadow-outline font-open">{{ subtitle }}</p>
+      <h1 class="text-5xl md:text-[80px] text-white font-bold mb-6 font-sans leading-3 shadow-primary drop-shadow-lg">{{ firstTitle }}</h1>
+      <h1 class="text-6xl md:text-[120px] text-white font-bold mb-6 font-sans leading-tight shadow-primary drop-shadow-lg uppercase">{{ secondTitle }}</h1>
+      <p class="text-3xl md:text-3xl text-shadow-outline text-white font-open">{{ subtitle }}</p>
 
       <WhatsAppBtn :text="text" />
     </div>
