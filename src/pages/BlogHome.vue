@@ -1,14 +1,16 @@
 <template>
   <q-page class="blog-home">
-    <div class="mt-48">
+    <div class="my-48">
       <BlogHero :dataHero="dataHero"/>
     </div>
+    <FooterComponent :firstTitle="firstTitle" :secondTitle="secondTitle" :copyRight="copyRight"/>
   </q-page>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import BlogHero from '../components/blog/BlogHero.vue'
+import FooterComponent from 'src/components/FooterComponent.vue'
 
 const dataHero = ref([
   {
@@ -39,5 +41,9 @@ const dataHero = ref([
     excerptStyle: 'text-md'
   }
 ])
+
+const firstTitle = ref('Essência')
+const secondTitle = ref('Bahiana')
+const copyRight = ref(`© ${ new Date().getFullYear() } Essencia Bahiana. Todos os direitos reservados.`)
 
 </script>

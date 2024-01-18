@@ -9,6 +9,10 @@ const routes = [
         component: () => import('pages/IndexPage.vue')
       },
       {
+        path: '/politicas-de-privacidade',
+        component: () => import('pages/PrivacyPolicy.vue')
+      },
+      {
         path: '/blog',
         component: () => import('pages/BlogHome.vue'),
         children: [

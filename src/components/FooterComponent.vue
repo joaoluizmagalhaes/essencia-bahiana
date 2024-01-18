@@ -13,14 +13,17 @@
           <q-btn flat dense round icon="email" class="text-xl text-accent" @click="abrirEmail" />
         </div>
       </div>
-      <div class="text-center q-mt-md text-accent">
+      <div class="text-center q-mt-md text-accent flex flex-col">
         {{ copyRight }}
+        <span class="cursor-pointer" @click="goToPrivacy">Políticas de Privacidade</span>
       </div>
     </div>
   </footer>
 </template>
 <script setup>
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const props = defineProps({
   copyRight: String,
   firstTitle: String,
@@ -43,6 +46,10 @@ function abrirWhatsApp() {
 function abrirEmail() {
   const emailURL = 'mailto:contato@essenciabahiana.com.br'
   window.open(emailURL, '_blank')
+}
+
+function goToPrivacy() {
+  router.push('/politicas-de-privacidade')
 }
 
 </script>
