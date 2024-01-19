@@ -99,7 +99,7 @@ module.exports = configure(function (/* ctx */) {
           include: path.resolve(__dirname, './src/i18n/**')
         }],
         require('tailwindcss'),
-        require('autoprefixer')
+        require('autoprefixer'),
       ]
     },
 
@@ -128,7 +128,8 @@ module.exports = configure(function (/* ctx */) {
         'Notify',
         'Loading',
         'Dialog',
-        'Screen'
+        'Screen',
+        'Meta'
       ]
     },
 

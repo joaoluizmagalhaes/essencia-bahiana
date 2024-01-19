@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-section bg-dark-page text-light-gray p-10">
+  <div class="contact-section bg-dark-page text-light-gray p-10" id="contact">
     <div class="container mx-auto">
       <div class="text-center mb-10">
         <h2 class="text-6xl font-bold text-primary mb-2">Entre em Contato</h2>

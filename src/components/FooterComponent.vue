@@ -3,7 +3,7 @@
     <div class="q-px-lg q-py-md">
       <div class="flex flex-wrap justify-between items-center">
         <div class="flex items-center">
-          <img src="logo.svg" alt="Logo Essencia Bahiana" class="h-12 mr-4 bg-white rounded-full">
+          <img src="/logo.svg" alt="Logo Essencia Bahiana" class="h-12 mr-4 bg-white rounded-full">
           <div class="text-2xl font-bold font-sans text-accent">{{ firstTitle }} <span class="uppercase text-3xl font-bold">{{ secondTitle }}</span></div>
         </div>
         <div class="flex items-center  mx-auto md:mx-0">

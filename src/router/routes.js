@@ -15,13 +15,11 @@ const routes = [
       {
         path: '/blog',
         component: () => import('pages/BlogHome.vue'),
-        children: [
-          {
-            path: '/blog/:categor/:id',
-            component: () => import('pages/BlogPage.vue')
-          }
-        ]
       },
+      {
+        path: '/blog/:categor/:id',
+        component: () => import('pages/BlogPage.vue')
+      }
     ]
   },
 

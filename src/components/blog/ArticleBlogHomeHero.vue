@@ -2,7 +2,7 @@
   <article :class="`w-full pb-6 md:pb-0 cursor-pointer ${article.containerStyle}`">
     <figure class="relative figure-hover">
       <div class="relative w-full h-full overflow-hidden">
-        <q-img :src="article.imageURL" :class="`w-full h-[250px] object-cover object-center relative z-10 image-hover ease-in-out duration-500 ${article.imageStyle}`" />
+        <q-img :src="article.imageURL" :class="`relative object-cover object-center relative z-10 image-hover ease-in-out duration-500 ${article.imageStyle}`" :alt="article.title" />
       </div>
       <figcaption class="z-20 md:absolute bottom-0 py-3 md:p-6">
         <header>

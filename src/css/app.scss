@@ -27,3 +27,14 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--q-color-accent-light); /* Ajuste para uma cor de hover se necessário */
   }
 }
+
+.blog-content {
+  p {
+    @apply mb-6 text-lg indent-6 text-justify;
+    color: $dark
+  }
+
+  > img {
+    @apply rounded-lg m-3
+  }
+}
