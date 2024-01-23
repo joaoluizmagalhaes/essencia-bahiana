@@ -1,5 +1,6 @@
 <template>
-  <div ref="adContainer" class="w-full ad-container py-6">
+  <div ref="adContainer" class="w-full ad-container mx-auto p-6 max-w-[1000px]">
+    <h4 class="font-bold text-secondary font-sans text-base">Publicidade:</h4>
     <ins class="adsbygoogle container mx-auto flex justify content-center"
          :data-ad-client="dataAdClient"
          :data-ad-slot="dataAdSlot"

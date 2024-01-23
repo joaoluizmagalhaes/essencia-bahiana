@@ -5,17 +5,27 @@
         <div class="w-full ">
           <q-img class="w-full max-h-[500px] object-cover" :src="`/${post.imageURL}`" :alt="post.title" />
         </div>
-        <figcaption class="py-8 px-6 md:px-0">
+        <figcaption class="py-8 px-6 md:px-0 flex flex-col">
           <h1 class="text-2xl md:text-5xl font-sans font-bold mb-6">{{ post.title }}</h1>
           <p class="text-2xl">{{ post.excerpt }}</p>
+          <p class="ml-auto text-kg text-accent">Por Essência Bahiana</p>
         </figcaption>
+        <q-separator class="max-w-[1000px] mx-auto mb-6" />
+        <q-breadcrumbs>
+          <q-breadcrumbs-el label="Home" to="/"/>
+          <q-breadcrumbs-el label="Blog" to="/blog" />
+          <q-breadcrumbs-el label="O que fazer" />
+          <q-breadcrumbs-el :label="post.title" />
+        </q-breadcrumbs>
+
       </figure>
     </header>
     <AdComponent :dataAdSlot="dataAdSlotBanner" />
+    <q-separator class="max-w-[1000px] mx-auto mb-6" />
     <main class="max-w-[1000px] mx-auto flex flex-col md:flex-row mb-6">
-      <section v-html="post.content" class="blog-content w-full md:w-9/12 px-6" />
-      <aside class="w-full md:w-3/12">
-        <InstagramFeed />
+      <section v-html="post.content" class="blog-content w-full md:w-8/12 px-6" />
+      <aside class="w-full md:w-4/12">
+        <InstagramFeed :id="post.id"/>
         <AdComponent :dataAdSlot="dataAdSlotSquare" />
       </aside>
     </main>
@@ -53,7 +63,7 @@ onMounted(async () => {
   const docRef = doc(db, 'blog', id)
   const docSnap = await getDoc(docRef)
   if (docSnap.exists()) {
-    post.value = docSnap.data()
+    post.value = {id: docSnap.id, ...docSnap.data()}
   }
 
 })
