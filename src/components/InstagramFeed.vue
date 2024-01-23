@@ -34,7 +34,6 @@ onMounted(async () => {
 
     if (docSnap.exists()) {
       const data = docSnap.data()
-      console.log(data)
       const accessToken = data.token // Use o token conforme necessário
       const resultLimit = 6 // Número de posts a serem recuperados
 
@@ -58,7 +57,6 @@ onMounted(async () => {
       const postsWithType = await Promise.all(typePromises)
       posts.value = postsWithType // Atualizar o estado com os novos objetos
 
-      console.log(posts.value)
     } else {
       console.error('Documento do token não encontrado.')
     }

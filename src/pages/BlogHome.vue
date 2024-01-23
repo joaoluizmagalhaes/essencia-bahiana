@@ -1,12 +1,12 @@
 <template>
   <q-page class="blog-home">
     <main class="my-28 md:mt-48 md:mb-10 flex flex-col">
-      <BlogHero :dataHero="dataHero"/>
+      <BlogHero v-if="dataHero.length > 0" :dataHero="dataHero"/>
 
       <AdComponent :dataAdSlot="dataAdSlotBanner" />
 
       <div class="flex container mx-auto ">
-        <section class="w-full md:w-9/12">
+        <section class="w-full md:w-9/12" v-if="dataBody">
           <ArticleBody v-for="item in dataBody" :article="item" :key="item.title" />
         </section>
         <aside class="w-full md:w-3/12">
@@ -19,16 +19,24 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import BlogHero from '../components/blog/BlogHero.vue'
 import ArticleBody from '../components/blog/ArticleBlogHomeBody.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import AdComponent from 'src/components/blog/AdComponent.vue'
+import { db } from 'src/firebase'
+import {
+  collection, query, getDocs
+} from "@firebase/firestore"
 
 const dataAdSlotSquare = import.meta.env.VITE_GOOGLE_AD_SLOT_SQUARE
 const dataAdSlotBanner = import.meta.env.VITE_GOOGLE_AD_SLOT_BANNER
 
-const dataHero = ref([
+
+const dataHero = ref([])
+const dataBody = ref([])
+
+const dataHeroOld = ref([
   {
     id:'espelho',
     title: 'Praia do Espelho: Um Espetáculo da Natureza',
@@ -63,7 +71,7 @@ const dataHero = ref([
   }
 ])
 
-const dataBody = ref([
+const dataBodyOld = ref([
   {
     id:'arraial-dajuda',
     title: "Descubra Arraial d'Ajuda: Um Paraíso Escondido",
@@ -93,6 +101,31 @@ const dataBody = ref([
     content: ''
   }
 ])
+
+
+
+onMounted( () => {
+
+  dataHero.value = []
+  dataBody.value = []
+
+  const blogRef = collection(db, 'blog')
+
+  const q = query(blogRef)
+
+  getDocs(q)
+  .then(response => {
+    response.forEach(doc => {
+
+      if(doc.data().featured) {
+        dataHero.value.push({id : doc.id, ...doc.data()})
+      } else {
+        dataBody.value.push({id : doc.id, ...doc.data()})
+      }
+    })
+  })
+
+})
 
 const firstTitle = ref('Essência')
 const secondTitle = ref('Bahiana')
