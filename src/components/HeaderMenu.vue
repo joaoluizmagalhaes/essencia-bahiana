@@ -1,6 +1,6 @@
 <template>
   <q-tabs v-model="tab" :vertical="!isMdOrAbove ? false : true" class="text-primary">
-    <q-btn-dropdown auto-close stretch flat label="O que fazer em" class="w-full text-center">
+    <!--<q-btn-dropdown auto-close stretch flat label="O que fazer em" class="w-full text-center">
       <q-list separator class="text-primary md:bg-transparent bg-white ">
         <q-item clickable @click="tab = 'portoSeguro'" class="bg-transparent">
           <q-item-section>Porto Seguro</q-item-section>
@@ -15,7 +15,7 @@
           <q-item-section>Caraíva</q-item-section>
         </q-item>
       </q-list>
-    </q-btn-dropdown>
+    </q-btn-dropdown> -->
     <q-tab name="blog" label="Blog" @click="goTo('blog')"/>
     <!--<q-tab name="agenda" label="Agenda" />
     <q-tab name="passeios" label="Passeios" /> -->
