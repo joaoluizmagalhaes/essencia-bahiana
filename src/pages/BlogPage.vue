@@ -15,6 +15,7 @@
     <main class="max-w-[1000px] mx-auto flex flex-col md:flex-row mb-6">
       <section v-html="post.content" class="blog-content w-full md:w-9/12 px-6" />
       <aside class="w-full md:w-3/12">
+        <InstagramFeed />
         <AdComponent :dataAdSlot="dataAdSlotSquare" />
       </aside>
     </main>
@@ -28,6 +29,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import AdComponent from 'src/components/blog/AdComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
+import InstagramFeed from 'src/components/InstagramFeed.vue'
 
 const route = useRoute()
 
@@ -58,7 +60,7 @@ const data = ref([
     title: 'Trancoso: Beleza e Charme Histórico',
     imageURL: 'quadrado-blog-hero.jpg',
     excerpt: 'Mergulhe na elegância de Trancoso, um lugar onde praias deslumbrantes encontram um rico patrimônio cultural.',
-    content: "<p>Trancoso é uma verdadeira joia da Costa do Descobrimento, onde a história encontra a beleza natural. Este charmoso distrito de Porto Seguro é famoso por seu Quadrado Histórico, suas casas coloridas e suas praias deslumbrantes. Um passeio por Trancoso é uma viagem no tempo, onde cada esquina revela uma história e cada praia convida ao relaxamento e à contemplação.</p><img src='/trancoso-1.jpg' alt='Quadrado Histórico de Trancoso' style='float:right;width:50%;margin-left:20px;'><p>A oferta de passeios em Trancoso é tão rica quanto suas paisagens. Explore as praias paradisíacas, como a Praia dos Coqueiros e a Praia do Espelho, ou desfrute de um jogo de golfe em um dos campos mais cobiçados da região. Os traslados para Trancoso garantem uma viagem confortável e segura, permitindo que você desfrute de cada momento sem preocupações.</p><img src='/trancoso-2.jpg' alt='Praia dos Coqueiros em Trancoso' style='float:left;width:50%;margin-right:20px;'><p>À noite, Trancoso se transforma. O Quadrado, iluminado por lanternas coloridas, oferece uma variedade de restaurantes e bares onde a gastronomia local e a música ao vivo criam uma atmosfera mágica. Desfrute de um jantar sob as estrelas e sinta a verdadeira essência da vida em Trancoso.</p><p>Os serviços de traslado em Trancoso são projetados para oferecer a máxima comodidade. Seja para chegar ao distrito ou para explorar seus arredores, os traslados proporcionam uma experiência de viagem tranquila e agradável, complementando perfeitamente a serenidade do local.</p><p>Viver Trancoso é uma experiência única. A combinação de beleza natural, riqueza cultural e infraestrutura de qualidade faz deste lugar um destino imperdível. Reserve já sua viagem e prepare-se para descobrir o encanto de Trancoso, um lugar onde cada dia é um convite para a aventura e o descanso.</p>",
+    content: "<p>Trancoso é uma verdadeira joia da Costa do Descobrimento, onde a história encontra a beleza natural. Este charmoso distrito de Porto Seguro é famoso por seu Quadrado Histórico, suas casas coloridas e suas praias deslumbrantes. Um passeio por Trancoso é uma viagem no tempo, onde cada esquina revela uma história e cada praia convida ao relaxamento e à contemplação.</p><img src='/trancoso-2.jpg' alt='Quadrado Histórico de Trancoso' style='float:right;width:50%;margin-left:20px;'><p>A oferta de passeios em Trancoso é tão rica quanto suas paisagens. Explore as praias paradisíacas, como a Praia dos Coqueiros e a Praia do Espelho, ou desfrute de um jogo de golfe em um dos campos mais cobiçados da região. Os traslados para Trancoso garantem uma viagem confortável e segura, permitindo que você desfrute de cada momento sem preocupações.</p><img src='/trancoso-.jpg' alt='Praia dos Coqueiros em Trancoso' style='float:left;width:50%;margin-right:20px;'><p>À noite, Trancoso se transforma. O Quadrado, iluminado por lanternas coloridas, oferece uma variedade de restaurantes e bares onde a gastronomia local e a música ao vivo criam uma atmosfera mágica. Desfrute de um jantar sob as estrelas e sinta a verdadeira essência da vida em Trancoso.</p><p>Os serviços de traslado em Trancoso são projetados para oferecer a máxima comodidade. Seja para chegar ao distrito ou para explorar seus arredores, os traslados proporcionam uma experiência de viagem tranquila e agradável, complementando perfeitamente a serenidade do local.</p><p>Viver Trancoso é uma experiência única. A combinação de beleza natural, riqueza cultural e infraestrutura de qualidade faz deste lugar um destino imperdível. Reserve já sua viagem e prepare-se para descobrir o encanto de Trancoso, um lugar onde cada dia é um convite para a aventura e o descanso.</p>",
   },
   {
     id:'arraial-dajuda',
