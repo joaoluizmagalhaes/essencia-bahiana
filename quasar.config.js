@@ -84,12 +84,6 @@ module.exports = configure(function (/* ctx */) {
         viteConf.define.__VUE_PROD_HYDRATION_MISMATCH_DETAILS__ = false;
       },
 
-      vite: {
-        optimizeDeps: {
-          exclude: ['firebase-functions']
-        }
-      },
-
       // viteVuePluginOptions: {},
 
       vitePlugins: [
@@ -106,6 +100,7 @@ module.exports = configure(function (/* ctx */) {
         }],
         require('tailwindcss'),
         require('autoprefixer'),
+
       ]
     },
 
@@ -117,6 +112,8 @@ module.exports = configure(function (/* ctx */) {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
+      config: {},
+
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
 
