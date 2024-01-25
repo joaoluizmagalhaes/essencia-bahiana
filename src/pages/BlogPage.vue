@@ -37,6 +37,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useMeta } from 'quasar'
 import AdComponent from 'src/components/blog/AdComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import InstagramFeed from 'src/components/InstagramFeed.vue'
@@ -64,6 +65,63 @@ onMounted(async () => {
   const docSnap = await getDoc(docRef)
   if (docSnap.exists()) {
     post.value = {id: docSnap.id, ...docSnap.data()}
+
+    useMeta({
+      title: post.value.title,
+      titleTemplate: title => `Essência BAHIANA | Blog | ${title}`,
+      meta:
+      {
+        description: {
+          name: 'description',
+          content: post.value.description,
+        },
+        equiv: {
+          'http-equiv': 'Content-Type',
+          content: 'text/html; charset=UTF-8'
+        },
+        keywords: {
+          name: 'keywords',
+          content: post.value.keywords
+        },
+        ogTitle: {
+          property: 'og:title',
+          template () {
+            return `Essência BAHIANA | ${post.value.title}`
+          }
+        },
+        ogDescription: {
+          property: 'og:description',
+          template () {
+            return post.value.description
+          }
+        },
+        ogImage: {
+          property: 'og:image',
+          template() {
+            return  `https://essenciabahiana.com.br/${post.value.imageURL}`
+          }
+        },
+        twitterTitle: {
+          property: 'twitter:title',
+          template () {
+            return `Essência BAHIANA | ${post.value.title}`
+          }
+        },
+        twitterDescription: {
+          property: 'twitter:description',
+          template () {
+            return post.value.description
+          }
+        },
+        twitterImage: {
+          property: 'twitter:image',
+          template() {
+            return  `https://essenciabahiana.com.br/${post.value.imageURL}`
+          }
+        }
+      }
+
+    })
   }
 
 })

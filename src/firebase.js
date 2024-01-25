@@ -32,7 +32,6 @@ const app = initializeApp(firebaseConfig)
   isTokenAutoRefreshEnabled: true
 }) */
 const functions = getFunctions(app)
-const analytics = getAnalytics(app)
 const auth = getAuth(app)
 const db = getFirestore(app)
 

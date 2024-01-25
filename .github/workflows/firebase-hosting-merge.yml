@@ -22,7 +22,7 @@ jobs:
 
       # Instalar dependências
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
 
       # Fazer build do projeto Quasar
       - name: Build Quasar Project
@@ -41,15 +41,20 @@ jobs:
           echo "VITE_GOOGLE_AD_CLIENT=${{ secrets.VITE_GOOGLE_AD_CLIENT }}" >> .env
           echo "VITE_GOOGLE_AD_SLOT_SQUARE=${{ secrets.VITE_GOOGLE_AD_SLOT_SQUARE }}" >> .env
           echo "VITE_GOOGLE_AD_SLOT_BANNER=${{ secrets.VITE_GOOGLE_AD_SLOT_BANNER }}" >> .env
-          npx quasar build
+          npx quasar build -m ssr
 
-      # Deploy no Firebase Hosting
-      - name: Deploy to Firebase Hosting
+      # Instalar dependências para Firebase Functions
+      - name: Install Dependencies for Firebase Functions
+        run: cd functions && npm install
+
+      # Fazer deploy no Firebase (inclui Hosting e Functions)
+      - name: Deploy to Firebase (Hosting and Functions)
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ESSENCIA_BAHIANA }}
           channelId: live
           projectId: essencia-bahiana
+
 
 

@@ -19,7 +19,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "dist/spa",
+    "public": "dist/ssr",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -28,7 +28,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "function": "ssr"
       }
     ]
   },

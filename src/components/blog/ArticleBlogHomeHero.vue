@@ -6,7 +6,7 @@
       </div>
       <figcaption class="z-20 md:absolute bottom-0 py-3 md:p-6">
         <header>
-          <h2 :class="`text-2xl md:text-shadow-outline font-bold font-sans ${article.titleStyle} md:text-white`">{{ article.title }}</h2>
+          <h1 :class="`text-2xl md:text-shadow-outline font-bold font-sans ${article.titleStyle} md:text-white`">{{ article.title }}</h1>
           <p :class="`text-lg md:text-white md:text-shadow-outline ${article.excerptStyle}`">{{ article.excerpt }}</p>
         </header>
       </figcaption>
