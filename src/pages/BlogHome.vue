@@ -20,6 +20,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useMeta } from 'quasar'
 import BlogHero from '../components/blog/BlogHero.vue'
 import ArticleBody from '../components/blog/ArticleBlogHomeBody.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
@@ -123,6 +124,62 @@ onMounted( () => {
         dataBody.value.push({id : doc.id, ...doc.data()})
       }
     })
+  })
+
+  useMeta({
+      title: 'Essência BAHIANA | Blog',
+      meta:
+      {
+        description: {
+          name: 'description',
+          content: "Descubra as maravilhas de Porto Seguro e seus arredores conosco. Nosso blog 'Essência Bahiaa' oferece informações detalhadas sobre os melhores pontos turísticos e experiências imperdíveis na região. Planeje sua viagem com facilidade, explore nossa seleção de passeios emocionantes e traslados confortáveis. Sua aventura inesquecível começa aqui!",
+        },
+        equiv: {
+          'http-equiv': 'Content-Type',
+          content: 'text/html; charset=UTF-8'
+        },
+        keywords: {
+          name: 'keywords',
+          content: "Porto Seguro, Pontos turísticos em Porto Seguro, Passeios em Porto Seguro, Traslados em Porto Seguro, Turismo na Bahia, Viagens pela Bahia, Melhores experiências em Porto Seguro, Roteiros de viagem em Porto Seguro, Atrações turísticas na região, Serviço de transporte em Porto Seguro, Roteiro de viagem personalizado, Dicas de viagem para Porto Seguro, Destinos na Bahia, Planejamento de viagem, Experiências memoráveis na Bahia."
+        },
+        ogTitle: {
+          property: 'og:title',
+          template () {
+            return `Essência BAHIANA | Blog`
+          }
+        },
+        ogDescription: {
+          property: 'og:description',
+          template () {
+            return "Descubra as maravilhas de Porto Seguro e seus arredores conosco. Nosso blog 'Essência Bahiaa' oferece informações detalhadas sobre os melhores pontos turísticos e experiências imperdíveis na região. Planeje sua viagem com facilidade, explore nossa seleção de passeios emocionantes e traslados confortáveis. Sua aventura inesquecível começa aqui!"
+          }
+        },
+        ogImage: {
+          property: 'og:image',
+          template() {
+            return  `https://essenciabahiana.com.br/hero.jpg`
+          }
+        },
+        twitterTitle: {
+          property: 'twitter:title',
+          template () {
+            return `Essência BAHIANA | Blog`
+          }
+        },
+        twitterDescription: {
+          property: 'twitter:description',
+          template () {
+            return "Descubra as maravilhas de Porto Seguro e seus arredores conosco. Nosso blog 'Essência Bahiaa' oferece informações detalhadas sobre os melhores pontos turísticos e experiências imperdíveis na região. Planeje sua viagem com facilidade, explore nossa seleção de passeios emocionantes e traslados confortáveis. Sua aventura inesquecível começa aqui!"
+          }
+        },
+        twitterImage: {
+          property: 'twitter:image',
+          template() {
+            return  `https://essenciabahiana.com.br/hero.jpg`
+          }
+        }
+      }
+
   })
 
 })
