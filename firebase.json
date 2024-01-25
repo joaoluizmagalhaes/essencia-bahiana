@@ -2,7 +2,11 @@
   "functions": [
     {
       "source": "functions",
-      "codebase": "default",
+      "codebase": "default"
+    },
+    {
+      "source": "essencia-bahiana",
+      "codebase": "essencia-bahiana",
       "ignore": [
         "node_modules",
         ".git",
@@ -19,7 +23,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "dist/ssr",
+    "public": "dist/spa",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -28,7 +32,7 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "handler"
+        "destination": "/index.html"
       }
     ]
   },
