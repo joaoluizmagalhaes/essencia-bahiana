@@ -1,6 +1,4 @@
 const functions = require('firebase-functions')
-const { ssr } = require('../dist/ssr')
-
 const runtimeOpts = {
   timeoutSeconds: 120, // Aumenta o tempo limite para 120 segundos
   memory: '256MB'
@@ -37,6 +35,3 @@ exports.fetchPlaces = functions
     })
   })
 
-exports.ssr = functions.https.onRequest((request, response) => {
-  ssr(request, response);
-})

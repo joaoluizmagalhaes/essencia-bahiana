@@ -18,6 +18,7 @@ import {
   ssrRenderPreloadTag,
   ssrServeStaticContent
 } from 'quasar/wrappers'
+import * as functions from 'firebase-functions'
 
 /**
  * Create your webserver and return its instance.
@@ -53,13 +54,19 @@ export const create = ssrCreate((/* { ... } */) => {
  * For production, you can instead export your
  * handler for serverless use or whatever else fits your needs.
  */
-export const listen = ssrListen(async ({ app, port, isReady }) => {
-  await isReady()
-  return app.listen(port, () => {
-    if (process.env.PROD) {
-      console.log('Server listening at port ' + port)
+export const listen = ssrListen(async ({ app, port, ssrHandler, isReady }) => {
+  if (process.env.DEV) {
+    await isReady()
+    return app.listen(port, () => {
+      if (process.env.PROD) {
+        console.log("Server listening at port " + port)
+      }
+    })
+  } else {
+    return {
+      handler: functions.https.onRequest(ssrHandler),
     }
-  })
+  }
 })
 
 /**
