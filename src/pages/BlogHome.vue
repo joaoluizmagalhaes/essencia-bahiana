@@ -3,14 +3,14 @@
     <main class="my-28 md:mt-48 md:mb-10 flex flex-col">
       <BlogHero v-if="dataHero.length > 0" :dataHero="dataHero"/>
 
-      <AdComponent :dataAdSlot="dataAdSlotBanner" />
+      <AdComponent dataAdSlot="banner" />
 
       <div class="flex container mx-auto ">
         <section class="w-full md:w-9/12" v-if="dataBody">
           <ArticleBody v-for="item in dataBody" :article="item" :key="item.title" />
         </section>
         <aside class="w-full md:w-3/12">
-          <AdComponent :dataAdSlot="dataAdSlotSquare" />
+          <AdComponent dataAdSlot="side" />
         </aside>
       </div>
     </main>

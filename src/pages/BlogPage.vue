@@ -20,13 +20,13 @@
 
       </figure>
     </header>
-    <AdComponent :dataAdSlot="dataAdSlotBanner" />
+    <AdComponent dataAdSlot="banner" />
     <q-separator class="max-w-[1000px] mx-auto mb-6" />
     <main class="max-w-[1000px] mx-auto flex flex-col md:flex-row mb-6">
       <section v-html="post.content" class="blog-content w-full md:w-8/12 px-6" />
       <aside class="w-full md:w-4/12">
         <InstagramFeed :id="post.id"/>
-        <AdComponent :dataAdSlot="dataAdSlotSquare" />
+        <AdComponent dataAdSlot="side" />
       </aside>
     </main>
     <FooterComponent :firstTitle="firstTitle" :secondTitle="secondTitle" :copyRight="copyRight"/>
@@ -49,8 +49,8 @@ import {
 
 const route = useRoute()
 
-const dataAdSlotSquare = import.meta.env.VITE_GOOGLE_AD_SLOT_SQUARE
-const dataAdSlotBanner = import.meta.env.VITE_GOOGLE_AD_SLOT_BANNER
+// const dataAdSlotSquare = import.meta.env.VITE_GOOGLE_AD_SLOT_SQUARE
+// const dataAdSlotBanner = import.meta.env.VITE_GOOGLE_AD_SLOT_BANNER
 
 const firstTitle = ref('Essência')
 const secondTitle = ref('Bahiana')
