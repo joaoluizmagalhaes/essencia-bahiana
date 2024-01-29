@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeMount } from 'vue'
 import { useMeta } from 'quasar'
 import BlogHero from '../components/blog/BlogHero.vue'
 import ArticleBody from '../components/blog/ArticleBlogHomeBody.vue'
@@ -105,7 +105,7 @@ const dataBodyOld = ref([
 
 
 
-onMounted( () => {
+onBeforeMount( () => {
 
   dataHero.value = []
   dataBody.value = []
