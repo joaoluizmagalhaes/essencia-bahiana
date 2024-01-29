@@ -1,4 +1,8 @@
 const functions = require('firebase-functions')
+const app = require('../dist/ssr/server') // Ajuste este caminho conforme necessário
+
+
+
 const runtimeOpts = {
   timeoutSeconds: 120, // Aumenta o tempo limite para 120 segundos
   memory: '256MB'
@@ -35,3 +39,4 @@ exports.fetchPlaces = functions
     })
   })
 
+exports.ssr = functions.https.onRequest(app)
