@@ -18,6 +18,7 @@ import {
   ssrRenderPreloadTag,
   ssrServeStaticContent
 } from 'quasar/wrappers'
+import * as functions from 'firebase-functions'
 
 /**
  * Create your webserver and return its instance.
@@ -53,17 +54,17 @@ export const create = ssrCreate((/* { ... } */) => {
  * For production, you can instead export your
  * handler for serverless use or whatever else fits your needs.
  */
-// src-ssr/server.js
-
-export const listen = ssrListen(async ({ app, port, isReady }) => {
-  // Espera até que tudo esteja pronto (por exemplo, conexões de banco de dados, se houver)
-  await isReady();
-
-  // Inicia o servidor Express na porta especificada
-  return app.listen(port, () => {
-    console.log(`Server listening at port ${port}`);
-  });
-});
+export async function listen({ app, port, ssrHandler, isReady }) {
+  if (process.env.DEV) {
+    await isReady();
+    return app.listen(port, () => {
+      console.log(`Server listening at port ${port}`);
+    });
+  } else {
+    // Para produção, especialmente para Firebase Functions, retornamos o ssrHandler
+    return functions.https.onRequest(app);
+  }
+}
 
 
 /**
@@ -138,3 +139,13 @@ export const renderPreloadTag = ssrRenderPreloadTag((file) => {
 
   return ''
 })
+
+
+// Cria a instância do servidor Express
+const app = create();
+
+// Obtém o manipulador para Firebase Functions
+const ssrHandler = listen({ app, port: null, ssrHandler: null, isReady: Promise.resolve() });
+
+export default ssrHandler;
+
