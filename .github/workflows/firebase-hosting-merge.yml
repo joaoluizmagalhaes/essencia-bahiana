@@ -41,7 +41,7 @@ jobs:
           echo "VITE_GOOGLE_AD_CLIENT=${{ secrets.VITE_GOOGLE_AD_CLIENT }}" >> .env
           echo "VITE_GOOGLE_AD_SLOT_SQUARE=${{ secrets.VITE_GOOGLE_AD_SLOT_SQUARE }}" >> .env
           echo "VITE_GOOGLE_AD_SLOT_BANNER=${{ secrets.VITE_GOOGLE_AD_SLOT_BANNER }}" >> .env
-          npx quasar build
+          npx quasar build -m ssr
 
       # Deploy no Firebase Hosting
       - name: Deploy to Firebase Hosting
