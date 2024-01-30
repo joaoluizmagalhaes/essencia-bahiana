@@ -13,10 +13,17 @@
   },
   "main": "index.js",
   "dependencies": {
-    "axios": "^1.6.5",
     "express": "^4.18.2",
-    "firebase-admin": "^11.8.0",
-    "firebase-functions": "^4.3.1"
+    "cors": "^2.8.5",
+    "axios": "^1.2.1",
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^4.6.0",
+    "quasar": "^2.6.0",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0",
+    "vue-i18n": "^9.0.0",
+    "vue-meta": "^3.0.0-alpha.2",
+    "pinia": "^2.0.11"
   },
   "devDependencies": {
     "firebase-functions-test": "^3.1.0"

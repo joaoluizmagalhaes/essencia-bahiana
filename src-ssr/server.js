@@ -15,9 +15,11 @@ import {
   ssrClose,
   ssrCreate,
   ssrListen,
+  ssrHandler,
   ssrRenderPreloadTag,
   ssrServeStaticContent
 } from 'quasar/wrappers'
+import render from './middlewares/render' // Ajuste o caminho conforme necessário
 import * as functions from 'firebase-functions'
 
 /**
@@ -27,7 +29,7 @@ import * as functions from 'firebase-functions'
  *
  * Should NOT be async!
  */
-export const create = ssrCreate((/* { ... } */) => {
+export const create = ssrCreate(async (/* { ... } */) => {
   const app = express()
 
   // attackers can use this header to detect apps running Express
@@ -39,6 +41,9 @@ export const create = ssrCreate((/* { ... } */) => {
   if (process.env.PROD) {
     app.use(compression())
   }
+
+  render({ app })
+
 
   return app
 })
@@ -54,18 +59,18 @@ export const create = ssrCreate((/* { ... } */) => {
  * For production, you can instead export your
  * handler for serverless use or whatever else fits your needs.
  */
-export async function listen({ app, port, ssrHandler, isReady }) {
-  if (process.env.DEV) {
-    //await isReady();
+export async function listen ({ app, port, isReady }) {
+  if(process.env.DEV){
+    await isReady()
     return app.listen(port, () => {
-      console.log(`Server listening at port ${port}`);
-    });
+      if (process.env.PROD) {
+        console.log('Server listening at port ' + port)
+      }
+    })
   } else {
-    // Para produção, especialmente para Firebase Functions, retornamos o ssrHandler
-    return functions.https.onRequest(app);
+    return {handler: functions.https.onRequest(app)}
   }
 }
-
 
 /**
  * Should close the server and free up any resources.
@@ -139,12 +144,3 @@ export const renderPreloadTag = ssrRenderPreloadTag((file) => {
 
   return ''
 })
-
-
-// Cria a instância do servidor Express
-const app = create();
-
-// Obtém o manipulador para Firebase Functions
-const ssrHandler = listen({ app, port: null, ssrHandler: null, isReady: Promise.resolve() });
-
-module.exports.handler = ssrHandler;
