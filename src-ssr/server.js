@@ -56,7 +56,7 @@ export const create = ssrCreate((/* { ... } */) => {
  */
 export async function listen({ app, port, ssrHandler, isReady }) {
   if (process.env.DEV) {
-    await isReady();
+    //await isReady();
     return app.listen(port, () => {
       console.log(`Server listening at port ${port}`);
     });
@@ -147,5 +147,4 @@ const app = create();
 // Obtém o manipulador para Firebase Functions
 const ssrHandler = listen({ app, port: null, ssrHandler: null, isReady: Promise.resolve() });
 
-export default ssrHandler;
-
+module.exports.handler = ssrHandler;
