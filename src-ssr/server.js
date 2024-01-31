@@ -29,7 +29,7 @@ import * as functions from 'firebase-functions'
  *
  * Should NOT be async!
  */
-export const create = ssrCreate(async (/* { ... } */) => {
+export const create = ssrCreate((/* { ... } */) => {
   const app = express()
 
   // attackers can use this header to detect apps running Express
@@ -43,7 +43,6 @@ export const create = ssrCreate(async (/* { ... } */) => {
   }
 
   render({ app })
-
 
   return app
 })
@@ -59,17 +58,18 @@ export const create = ssrCreate(async (/* { ... } */) => {
  * For production, you can instead export your
  * handler for serverless use or whatever else fits your needs.
  */
-export async function listen ({ app, port, isReady }) {
-  if(process.env.DEV){
-    await isReady()
-    return app.listen(port, () => {
-      if (process.env.PROD) {
-        console.log('Server listening at port ' + port)
-      }
-    })
-  } else {
-    return {handler: functions.https.onRequest(app)}
+export function listen ({ app, port, isReady }) {
+  // returns { handler: ... } without Promise on production
+  if (process.env.PROD) {
+    return { handler: functions.https.onRequest(app) }
   }
+
+  // returns a promise only on development
+  return isReady().then(() => {
+    return app.listen(port, () => {
+      console.log('Server listening at port ' + port)
+	  })
+  })
 }
 
 /**

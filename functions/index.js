@@ -1,5 +1,5 @@
 const functions = require('firebase-functions')
-const ssrHandlerPromise = require('./dist/ssr').default
+const { handler } = require('./dist/ssr').default
 
 const runtimeOpts = {
   timeoutSeconds: 120, // Aumenta o tempo limite para 120 segundos
@@ -36,8 +36,6 @@ exports.fetchPlaces = functions
 
     })
   })
-console.log(ssrHandlerPromise)
-ssrHandlerPromise.then(ssrHandler => {
-  console.log(ssrHandler)
-  exports.ssr = functions.https.onRequest(ssrHandler.handler)
-})
+
+// no need for `functions.https.onRequest` again since it's in src-ssr/server.js already
+exports.ssr = handler
