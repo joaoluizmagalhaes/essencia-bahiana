@@ -36,6 +36,5 @@ exports.fetchPlaces = functions
 
     })
   })
-
 // no need for `functions.https.onRequest` again since it's in src-ssr/server.js already
 exports.ssr = handler

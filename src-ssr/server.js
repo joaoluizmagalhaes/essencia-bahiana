@@ -42,8 +42,6 @@ export const create = ssrCreate((/* { ... } */) => {
     app.use(compression())
   }
 
-  render({ app })
-
   return app
 })
 
@@ -58,10 +56,10 @@ export const create = ssrCreate((/* { ... } */) => {
  * For production, you can instead export your
  * handler for serverless use or whatever else fits your needs.
  */
-export function listen ({ app, port, isReady }) {
+export const listen = ssrListen(({ app, port, isReady, ssrHandler }) => {
   // returns { handler: ... } without Promise on production
   if (process.env.PROD) {
-    return { handler: functions.https.onRequest(app) }
+    return { handler: functions.https.onRequest(ssrHandler) }
   }
 
   // returns a promise only on development
@@ -70,7 +68,7 @@ export function listen ({ app, port, isReady }) {
       console.log('Server listening at port ' + port)
 	  })
   })
-}
+})
 
 /**
  * Should close the server and free up any resources.
