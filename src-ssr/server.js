@@ -19,7 +19,6 @@ import {
   ssrRenderPreloadTag,
   ssrServeStaticContent
 } from 'quasar/wrappers'
-import render from './middlewares/render' // Ajuste o caminho conforme necessário
 import * as functions from 'firebase-functions'
 
 /**
