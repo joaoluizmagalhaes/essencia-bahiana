@@ -35,110 +35,77 @@
 </template>
 
 <script setup>
-import { ref, onMounted,  } from 'vue'
+import { ref, onServerPrefetch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useMeta } from 'quasar'
 import AdComponent from 'src/components/blog/AdComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import InstagramFeed from 'src/components/InstagramFeed.vue'
-
 import { db } from 'src/firebase'
-import {
-  doc, getDoc
-} from "@firebase/firestore"
+import { doc, getDoc } from "@firebase/firestore"
 
 const route = useRoute()
 
-// const dataAdSlotSquare = import.meta.env.VITE_GOOGLE_AD_SLOT_SQUARE
-// const dataAdSlotBanner = import.meta.env.VITE_GOOGLE_AD_SLOT_BANNER
+const { id } = route.params
+const docRef = doc(db, 'blog', id)
+const docSnap = ref(null)
 
 const firstTitle = ref('Essência')
 const secondTitle = ref('Bahiana')
-const copyRight = ref(`© ${ new Date().getFullYear() } Essencia Bahiana. Todos os direitos reservados.`)
+const copyRight = ref(`© ${new Date().getFullYear()} Essencia Bahiana. Todos os direitos reservados.`)
 
 const post = ref({})
-
 const title = ref('Page')
 const description = ref('Essência Bahiana Site')
-const keywords = ref ('')
+const keywords = ref('')
 const imageURL = ref('hero.jpg')
 
-useMeta(() => {
-  return {
-    title: title.value,
-    titleTemplate: title => `Essência BAHIANA | Blog | ${title}`,
-    meta:
-    {
-      description: {
-        name: 'description',
-        content: description.value,
-      },
-      equiv: {
-        'http-equiv': 'Content-Type',
-        content: 'text/html; charset=UTF-8'
-      },
-      keywords: {
-        name: 'keywords',
-        content: keywords.value
-      },
-      ogTitle: {
-        property: 'og:title',
-        template () {
-          return `Essência BAHIANA | ${title.value}`
-        }
-      },
-      ogDescription: {
-        property: 'og:description',
-        template () {
-          return description.value
-        }
-      },
-      ogImage: {
-        property: 'og:image',
-        template() {
-          return  `https://essenciabahiana.com.br/${imageURL.value}`
-        }
-      },
-      twitterTitle: {
-        property: 'twitter:title',
-        template () {
-          return `Essência BAHIANA | ${title.value}`
-        }
-      },
-      twitterDescription: {
-        property: 'twitter:description',
-        template () {
-          return description.value
-        }
-      },
-      twitterImage: {
-        property: 'twitter:image',
-        template() {
-          return  `https://essenciabahiana.com.br/${imageURL.value}`
-        }
-      }
-    }
+// Definindo as meta tags com useMeta
+useMeta(() => ({
+  title: title.value,
+  titleTemplate: title => `Essência BAHIANA | Blog | ${title}`,
+  meta: {
+    description: { name: 'description', content: description.value },
+    equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
+    keywords: { name: 'keywords', content: keywords.value },
+    ogTitle: { property: 'og:title', content: `Essência BAHIANA | ${title.value}` },
+    ogDescription: { property: 'og:description', content: description.value },
+    ogImage: { property: 'og:image', content: `https://essenciabahiana.com.br/${imageURL.value}` },
+    twitterTitle: { property: 'twitter:title', content: `Essência BAHIANA | ${title.value}` },
+    twitterDescription: { property: 'twitter:description', content: description.value },
+    twitterImage: { property: 'twitter:image', content: `https://essenciabahiana.com.br/${imageURL.value}` }
   }
-})
+}))
 
-function getData() {
-  const { category, id } = route.params
+onServerPrefetch(async () => {
 
-  const docRef = doc(db, 'blog', id)
-  getDoc(docRef)
-  .then(docSnap => {
-    post.value = {id: docSnap.id, ...docSnap.data()}
+  docSnap.value = await getDoc(docRef)
+
+  if (docSnap.value.exists()) {
+    post.value = { id: docSnap.value.id, ...docSnap.value.data() }
     title.value = post.value.title
     description.value = post.value.description
     keywords.value = post.value.keywords
     imageURL.value = post.value.imageURL
-  })
+  }
 
-}
 
-onMounted(() => {
-  getData()
 })
 
+onMounted(async() => {
 
+  if (!docSnap.value) {
+    docSnap.value = await getDoc(docRef)
+
+    if (docSnap.value.exists()) {
+      post.value = { id: docSnap.value.id, ...docSnap.value.data() }
+      title.value = post.value.title
+      description.value = post.value.description
+      keywords.value = post.value.keywords
+      imageURL.value = post.value.imageURL
+    }
+
+  }
+
+})
 </script>
