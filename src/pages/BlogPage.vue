@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { onServerPrefetch, onMounted, watchEffect, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useMeta } from 'quasar'
 import { useRoute } from 'vue-router'
 // import AdComponent from 'src/components/blog/AdComponent.vue'
@@ -59,10 +59,6 @@ onMounted(async () => {
 
 watch(() => route.params.id, async (newId) => {
   await loadPostData(newId)
-})
-
-watchEffect(async () => {
-
 })
 
 useMeta(() => {
