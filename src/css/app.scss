@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-content {
   p {
-    @apply mb-6 text-lg indent-6 text-justify;
+    @apply mb-6 text-lg indent-14 text-justify;
     color: $dark
   }
 

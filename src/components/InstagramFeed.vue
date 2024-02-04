@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-full p-5" v-if="posts.length > 0">
+  <div class="mx-auto max-w-full px-5" v-if="posts.length > 0">
     <div class="grid grid-cols-1 gap-4">
       <p class="text-lg font-bold font-sans">Confira o post mais recente.</p>
       <q-img class="cursor-pointer" src="/insta-logo-text.png" alt="Logo instagram com texto." @click="abrirInstagram" />
@@ -29,10 +29,6 @@ import { doc, getDoc } from "firebase/firestore"
 
 const posts = ref([])
 const localPosts = ref([])
-
-const props = defineProps({
-  id: String
-})
 
 onMounted(async () => {
   try {

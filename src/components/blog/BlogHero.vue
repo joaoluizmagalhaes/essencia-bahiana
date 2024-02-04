@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto container flex flex-col md:flex-row md:h-[600px]" v-if="data.length > 0">
+  <div class="mx-auto container flex flex-col mb-10 md:flex-row md:h-[600px]" v-if="data.length > 0">
     <div class="w-full md:w-7/12 px-6 md:px-0 box-border flex md:h-[600px]">
       <router-link :to="`/blog/o-que-fazer/${data[0].id}`" class="w-full" >
         <ArticleHero  :article="data[0]" />

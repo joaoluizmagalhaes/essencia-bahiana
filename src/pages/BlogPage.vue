@@ -1,111 +1,97 @@
 <template>
   <q-page class="">
-    <header class="max-w-[1000px] min-h-[400px] mx-auto mt-28 md:mt-44">
+    <header class="max-w-[1000px] min-h-[400px] mx-auto mt-28 md:mt-44 mb-10">
       <figure>
-        <div class="w-full ">
-          <q-img class="w-full max-h-[500px] object-cover" :src="`/${post.imageURL}`" :alt="post.title" />
+        <div class="w-full">
+          <q-img class="w-full max-h-[500px] object-cover" :src="`/${postStore.imageURL}`" :alt="postStore.post.title" />
         </div>
         <figcaption class="py-8 px-6 md:px-0 flex flex-col">
-          <h1 class="text-2xl md:text-5xl font-sans font-bold mb-6">{{ post.title }}</h1>
-          <p class="text-2xl">{{ post.excerpt }}</p>
+          <h1 class="text-2xl md:text-5xl font-sans font-bold mb-6">{{ postStore.post.title }}</h1>
+          <p class="text-2xl">{{ postStore.post.excerpt }}</p>
           <p class="ml-auto text-kg text-accent">Por Essência Bahiana</p>
         </figcaption>
         <q-separator class="max-w-[1000px] mx-auto mb-6" />
-        <q-breadcrumbs>
+        <q-breadcrumbs class="ml-6 md:ml-0">
           <q-breadcrumbs-el label="Home" to="/"/>
           <q-breadcrumbs-el label="Blog" to="/blog" />
           <q-breadcrumbs-el label="O que fazer" />
-          <q-breadcrumbs-el :label="post.title" />
+          <q-breadcrumbs-el :label="postStore.post.title" />
         </q-breadcrumbs>
-
       </figure>
     </header>
-    <AdComponent dataAdSlot="banner" />
-    <q-separator class="max-w-[1000px] mx-auto mb-6" />
+    <!--<AdComponent dataAdSlot="banner" />
+    <q-separator class="max-w-[1000px] mx-auto mb-6" />-->
     <main class="max-w-[1000px] mx-auto flex flex-col md:flex-row mb-6">
-      <section v-html="post.content" class="blog-content w-full md:w-8/12 px-6" />
+      <section v-html="postStore.post.content" class="blog-content w-full md:w-8/12 px-6 md:pl-0" />
       <aside class="w-full md:w-4/12">
-        <InstagramFeed :id="post.id"/>
-        <AdComponent dataAdSlot="side" />
+        <InstagramFeed />
+        <!--<AdComponent dataAdSlot="side" />-->
       </aside>
     </main>
     <FooterComponent :firstTitle="firstTitle" :secondTitle="secondTitle" :copyRight="copyRight"/>
   </q-page>
-
 </template>
 
 <script setup>
-import { ref, onServerPrefetch, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { onServerPrefetch, onMounted, watchEffect, ref, watch } from 'vue'
 import { useMeta } from 'quasar'
-import AdComponent from 'src/components/blog/AdComponent.vue'
+import { useRoute } from 'vue-router'
+// import AdComponent from 'src/components/blog/AdComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import InstagramFeed from 'src/components/InstagramFeed.vue'
-import { db } from 'src/firebase'
-import { doc, getDoc } from "@firebase/firestore"
 
 const route = useRoute()
-
-const { id } = route.params
-const docRef = doc(db, 'blog', id)
-const docSnap = ref(null)
+const postStore = usePostStore()
 
 const firstTitle = ref('Essência')
 const secondTitle = ref('Bahiana')
 const copyRight = ref(`© ${new Date().getFullYear()} Essencia Bahiana. Todos os direitos reservados.`)
 
-const post = ref({})
-const title = ref('Page')
-const description = ref('Essência Bahiana Site')
-const keywords = ref('')
-const imageURL = ref('hero.jpg')
 
-// Definindo as meta tags com useMeta
-useMeta(() => ({
-  title: title.value,
-  titleTemplate: title => `Essência BAHIANA | Blog | ${title}`,
-  meta: {
-    description: { name: 'description', content: description.value },
-    equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
-    keywords: { name: 'keywords', content: keywords.value },
-    ogTitle: { property: 'og:title', content: `Essência BAHIANA | ${title.value}` },
-    ogDescription: { property: 'og:description', content: description.value },
-    ogImage: { property: 'og:image', content: `https://essenciabahiana.com.br/${imageURL.value}` },
-    twitterTitle: { property: 'twitter:title', content: `Essência BAHIANA | ${title.value}` },
-    twitterDescription: { property: 'twitter:description', content: description.value },
-    twitterImage: { property: 'twitter:image', content: `https://essenciabahiana.com.br/${imageURL.value}` }
-  }
-}))
+// Função para carregar dados do post
+async function loadPostData(postId) {
+  await postStore.fetchPost(postId)
+}
 
-onServerPrefetch(async () => {
+onMounted(async () => {
+  await loadPostData(route.params.id)
+})
 
-  docSnap.value = await getDoc(docRef)
+watch(() => route.params.id, async (newId) => {
+  await loadPostData(newId)
+})
 
-  if (docSnap.value.exists()) {
-    post.value = { id: docSnap.value.id, ...docSnap.value.data() }
-    title.value = post.value.title
-    description.value = post.value.description
-    keywords.value = post.value.keywords
-    imageURL.value = post.value.imageURL
-  }
-
+watchEffect(async () => {
 
 })
 
-onMounted(async() => {
-
-  if (!docSnap.value) {
-    docSnap.value = await getDoc(docRef)
-
-    if (docSnap.value.exists()) {
-      post.value = { id: docSnap.value.id, ...docSnap.value.data() }
-      title.value = post.value.title
-      description.value = post.value.description
-      keywords.value = post.value.keywords
-      imageURL.value = post.value.imageURL
+useMeta(() => {
+    return {
+      title: postStore.title,
+      titleTemplate: title => `Essência BAHIANA | Blog | ${title}`,
+      meta: {
+        description: { name: 'description', content: postStore.description },
+        keywords: { name: 'keywords', content: postStore.keywords },
+        'http-equiv': { 'http-equiv': 'Content-Type', content: 'text/html charset=UTF-8' },
+        ogTitle: { property: 'og:title', content: `Essência BAHIANA | ${postStore.title}` },
+        ogDescription: { property: 'og:description', content: postStore.description },
+        ogImage: { property: 'og:image', content: `https://essenciabahiana.com.br/${postStore.imageURL}` },
+        twitterTitle: { property: 'twitter:title', content: `Essência BAHIANA | ${postStore.title}` },
+        twitterDescription: { property: 'twitter:description', content: postStore.description },
+        twitterImage: { property: 'twitter:image', content: `https://essenciabahiana.com.br/${postStore.imageURL}` }
+      }
     }
+  })
+</script>
 
+<script>
+import { usePostStore } from 'src/stores/postStore'
+
+export default {
+  preFetch({ store, currentRoute }) {
+    const postStore = usePostStore(store)
+    const postId = currentRoute.params.id
+    return postStore.fetchPost(postId)
   }
-
-})
+}
 </script>
