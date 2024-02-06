@@ -9,14 +9,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, defineAsyncComponent } from 'vue'
 import { useMeta } from 'quasar'
-import Hero from '../components/HeroComponent.vue'
-import SelectionBar from 'src/components/SelectionBar.vue'
-import TransferSection from 'src/components/TransferSection.vue'
-// import EventsSection from 'src/components/EventsSection.vue'
-import FooterComponent from 'src/components/FooterComponent.vue'
-import ContactSection from 'src/components/ContactSection.vue'
+
+const Hero = defineAsyncComponent(() =>
+  import('src/components/HeroComponent.vue')
+);
+const SelectionBar = defineAsyncComponent(() =>
+  import('src/components/SelectionBar.vue')
+);
+const TransferSection = defineAsyncComponent(() =>
+  import('src/components/TransferSection.vue')
+);
+const FooterComponent = defineAsyncComponent(() =>
+  import('src/components/FooterComponent.vue')
+);
+const ContactSection = defineAsyncComponent(() =>
+  import('src/components/ContactSection.vue')
+);
+/*const EventsSection = defineAsyncComponent(() =>
+  import ('src/components/EventsSection.vue')
+)*/
+
 
 const firstTitle = ref('Essência')
 const secondTitle = ref('Bahiana')
