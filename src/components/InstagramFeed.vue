@@ -2,7 +2,7 @@
   <div class="mx-auto max-w-full px-5" v-if="posts.length > 0">
     <div class="grid grid-cols-1 gap-4">
       <p class="text-lg font-bold font-sans">Confira o post mais recente.</p>
-      <q-img class="cursor-pointer" src="/insta-logo-text.png" alt="Logo instagram com texto." @click="abrirInstagram" />
+      <q-img class="cursor-pointer" src="/insta-logo-text.webp" alt="Logo instagram com texto." @click="abrirInstagram" />
       <!-- Loop começa aqui -->
       <div class="instagram-post flex flex-col h-auto " v-for="post in posts" :key="post.id">
         <div class="relative pb-1/1 min-h-[300px]">

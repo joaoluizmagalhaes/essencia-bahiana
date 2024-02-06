@@ -21,7 +21,7 @@ import ContactSection from 'src/components/ContactSection.vue'
 const firstTitle = ref('Essência')
 const secondTitle = ref('Bahiana')
 const subtitle = ref('Descubra a Magia e a Cultura Única da Terra do Descobrimento')
-const image = ref('/hero.jpg')
+const image = ref('/hero.webp')
 const copyRight = ref(`© ${ new Date().getFullYear() } Essencia Bahiana. Todos os direitos reservados.`)
 
 useMeta({
@@ -55,7 +55,7 @@ useMeta({
     ogImage: {
       property: 'og:image',
       template() {
-        return  `https://essenciabahiana.com.br/hero.jpg`
+        return  `https://essenciabahiana.com.br/hero.webp`
       }
     },
     twitterTitle: {
@@ -73,7 +73,7 @@ useMeta({
     twitterImage: {
       property: 'twitter:image',
       template() {
-        return  `https://essenciabahiana.com.br/hero.jpg`
+        return  `https://essenciabahiana.com.br/hero.webp`
       }
     }
   }

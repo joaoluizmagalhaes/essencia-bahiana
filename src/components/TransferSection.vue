@@ -25,7 +25,7 @@ import WhatsAppBtn from './WhatsAppBtn.vue'
 
 const data = ref([
   {
-    image: 'van-1.png',
+    image: 'van-1.webp',
     alt: 'Van na praia.',
     title: 'Traslados e Passeios Personalizados',
     text: 'Explore as maravilhas de Porto Seguro com nossos passeios exclusivos e traslados confortáveis. Seu parceiro ideal em turismo, garantindo aventuras inesquecíveis e segurança em cada viagem!',
@@ -33,7 +33,7 @@ const data = ref([
     order: false
   },
   {
-    image: 'van-2.png',
+    image: 'van-2.webp',
     alt: 'Van na Praia do Espelho',
     title: 'Explore o Coração da Bahia com Estilo! ',
     text: 'Porto Seguro espera por você com suas praias deslumbrantes e história rica. Desfrute de experiências únicas com nossos tours especializados e serviços de traslado de primeira classe, projetados para proporcionar conforto e conveniência em suas aventuras tropicais.',
@@ -41,7 +41,7 @@ const data = ref([
     order: true
   },
   {
-    image: 'van-3.png',
+    image: 'van-3.webp',
     alt: 'turistas felizes dentro da Van',
     title: 'Viva a Magia de Porto Seguro!',
     text: 'Embarque em uma jornada extraordinária pelos encantos naturais e culturais de Porto Seguro. Oferecemos itinerários personalizados e serviços de qualidade para tornar cada momento de sua viagem memorável e cheio de descobertas.',

@@ -104,7 +104,7 @@ const woffRE = /\.woff$/
 const woff2RE = /\.woff2$/
 const gifRE = /\.gif$/
 const jpgRE = /\.jpe?g$/
-const pngRE = /\.png$/
+const pngRE = /\.webp$/
 
 /**
  * Should return a String with HTML output

@@ -34,7 +34,8 @@ h1, h2, h3, h4, h5, h6 {
     color: $dark
   }
 
-  > img {
-    @apply rounded-lg m-3
+  > img,
+  p > img {
+    @apply rounded-lg my-3 w-full md:w-1/2
   }
 }

@@ -9,7 +9,7 @@ export const usePostStore = defineStore('postStore', {
     title: 'Page',
     description: 'Essência Bahiana Site',
     keywords: '',
-    imageURL: 'hero.jpg',
+    imageURL: 'hero.webp',
   }),
   actions: {
     async fetchPost(id) {

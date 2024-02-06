@@ -70,7 +70,7 @@ const dataBody = ref([])
       ogImage: {
         property: 'og:image',
         template() {
-          return  `https://essenciabahiana.com.br/hero.jpg`
+          return  `https://essenciabahiana.com.br/hero.webp`
         }
       },
       twitterTitle: {
@@ -88,7 +88,7 @@ const dataBody = ref([])
       twitterImage: {
         property: 'twitter:image',
         template() {
-          return  `https://essenciabahiana.com.br/hero.jpg`
+          return  `https://essenciabahiana.com.br/hero.webp`
         }
       }
     }
