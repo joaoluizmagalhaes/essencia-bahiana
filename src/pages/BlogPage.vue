@@ -22,8 +22,12 @@
     <!--<AdComponent dataAdSlot="banner" />
     <q-separator class="max-w-[1000px] mx-auto mb-6" />-->
     <main class="max-w-[1000px] mx-auto flex flex-col md:flex-row mb-6">
-      <section v-html="postStore.post.content" class="blog-content w-full md:w-8/12 px-6 md:pl-0" />
+      <section class="blog-content w-full md:w-8/12 px-6 md:pl-0">
+        <div v-html="postStore.post.content"  />
+        <WhatsAppBtn text="Entre em contato"/>
+      </section>
       <aside class="w-full md:w-4/12">
+        <BookingAd :location="postStore.post.location" />
         <InstagramFeed />
         <!--<AdComponent dataAdSlot="side" />-->
       </aside>
@@ -39,6 +43,8 @@ import { useRoute } from 'vue-router'
 // import AdComponent from 'src/components/blog/AdComponent.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import InstagramFeed from 'src/components/InstagramFeed.vue'
+import WhatsAppBtn from 'src/components/WhatsAppBtn.vue'
+import BookingAd from 'src/components/BookingAd.vue'
 
 const route = useRoute()
 const postStore = usePostStore()

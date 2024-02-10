@@ -6,7 +6,7 @@
     @click="openWhatsApp"
     >
     <q-avatar size="40px" class="mr-5">
-      <q-img src="zap-icon.webp" alt="Ícone Whatsapp" />
+      <q-img src="/zap-icon.webp" alt="Ícone Whatsapp" />
     </q-avatar>
     {{ text }}
   </q-btn>
