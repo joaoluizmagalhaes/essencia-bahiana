@@ -24,13 +24,15 @@ const props = defineProps({
   location: String
 })
 
+const location = ref(props.location ? props.location : 'Porto Seguro')
+
 
 onMounted(() => {
   bookingAdSrc.value = 'https://www.awin1.com/cread.php?awinmid=18120&awinaffid=1542385&campaign=Enjoy-the-summer&ued=https%3A%2F%2Fbooking.com%2Findex.pt-br.html?%2F'
   imgURL.value = 'https://www.awin1.com/cshow.php?s=2788398&v=18120&q=404159&r=1542385'
 
-  addTitle.value = `Descubra ${props.location}!`
-  addText.value = `Aproveite 15% de desconto na sua primeira reserva de 2024 para ${props.location} com a Booking. Explore a beleza e história de ${props.location}. Clique e economize!`
+  addTitle.value = `Descubra ${location.value}!`
+  addText.value = `Aproveite 15% de desconto na sua primeira reserva de 2024 para ${location.value} com a Booking. Explore a beleza e história de ${location.value}. Clique e economize!`
 })
 // Substitua esta URL pelo link específico do anúncio fornecido pelo Booking.com
 

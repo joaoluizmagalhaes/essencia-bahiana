@@ -10,6 +10,7 @@
           <ArticleBody v-for="item in dataBody" :article="item" :key="item.title" />
         </section>
         <aside class="w-full md:w-4/12 xl:w-3/12">
+          <BookingAd />
           <InstagramFeed />
           <!--<AdComponent dataAdSlot="side" />-->
         </aside>
@@ -26,6 +27,7 @@ import BlogHero from '../components/blog/BlogHero.vue'
 import ArticleBody from '../components/blog/ArticleBlogHomeBody.vue'
 import FooterComponent from 'src/components/FooterComponent.vue'
 import InstagramFeed from 'src/components/InstagramFeed.vue'
+import BookingAd from 'src/components/BookingAd.vue'
 // import AdComponent from 'src/components/blog/AdComponent.vue'
 import { db } from 'src/firebase'
 import {
