@@ -7,40 +7,46 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import SelectionBarItem from './SelectionBarItem.vue'
 
-const items = ref([
-  {
-    bgColor: 'bg-secondary',
-    icon: '/drink.svg',
-    text: 'Festas'
-  },
-  {
-    bgColor: 'bg-accent',
-    icon: '/bus.svg',
-    text: 'Traslados'
-  },
-  {
-    bgColor: 'bg-secondary',
-    icon: '/boat.svg',
-    text: 'Passeios'
-  },
-  {
-    bgColor: 'bg-accent',
-    icon: '/beach.svg',
-    text: 'Praias'
-  },
-  {
-    bgColor: 'bg-secondary',
-    icon: '/dive.svg',
-    text: 'Mergulhos'
-  },
-  {
-    bgColor: 'bg-accent',
-    icon: '/food.svg',
-    text: 'Gastronomia'
-  },
-])
+const items = ref([])
+
+onMounted(() => {
+  items.value = [
+    {
+      bgColor: 'bg-secondary',
+      icon: '/drink.svg',
+      text: 'Festas'
+    },
+    {
+      bgColor: 'bg-accent',
+      icon: '/bus.svg',
+      text: 'Traslados'
+    },
+    {
+      bgColor: 'bg-secondary',
+      icon: '/boat.svg',
+      text: 'Passeios'
+    },
+    {
+      bgColor: 'bg-accent',
+      icon: '/beach.svg',
+      text: 'Praias'
+    },
+    {
+      bgColor: 'bg-secondary',
+      icon: '/dive.svg',
+      text: 'Mergulhos'
+    },
+    {
+      bgColor: 'bg-accent',
+      icon: '/food.svg',
+      text: 'Gastronomia'
+    },
+  ]
+})
+
+
 
 </script>
